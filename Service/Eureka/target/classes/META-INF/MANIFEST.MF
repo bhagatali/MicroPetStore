@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Eureka
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Ali
+Implementation-Vendor-Id: com.petstore.eureka
+Build-Jdk: 1.8.0_60
+Implementation-URL: http://projects.spring.io/spring-boot/Eureka/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
