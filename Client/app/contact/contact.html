@@ -1,0 +1,11 @@
+<h2>Contacts</h2>
+  <p><i class="fa fa-envelope"></i><a href="mailto:bhagat.ali@gmail.com"> bhagat.ali@gmail.com</a></p>
+  <p><i class="fa fa-mobile fa-2x"></i> 647-960-9099</p>
+  <hr>
+  <h3>Locations</h3>
+  <div ng-repeat="location in locations">
+      <ul class="list-unstyled">
+          <li> <i class="fa fa-home"></i> {{location.name}}</li>
+          <p> {{location.street}}, {{location.city}}, {{location.state}},  {{location.zip}}</p>
+      </ul>
+  </div>  

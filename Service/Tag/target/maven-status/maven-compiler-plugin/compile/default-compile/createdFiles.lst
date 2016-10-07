@@ -1,0 +1,4 @@
+com/petstore/tag/TagApplication.class
+com/petstore/tag/controller/TagController.class
+com/petstore/tag/domain/Tag.class
+com/petstore/tag/repository/TagRepository.class

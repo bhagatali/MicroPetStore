@@ -7,5 +7,7 @@ import com.petstore.pet.domain.Pet;
 
 @Repository
 public interface PetRepository extends MongoRepository<Pet, Integer> {
+	
+	Iterable<Pet> findBypetName(String petName);
 
 }

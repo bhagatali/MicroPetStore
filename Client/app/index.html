@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+
+  <title>Micro PetStore</title>
+  
+
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#/pet">Pet's World</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#/pet"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="#/about"><i class="fa fa-users"></i> About</a></li>
+            <li><a href="#/contact"><i class="fa fa-envelope-o"></i> Contact Us</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><i class="fa fa-user"></i> Sign Up</a></li>
+            <li><a href="#"><i class="fa fa-sign-in"></i> Login</a></li>
+          </ul>          
+        </div>          
+    </div>
+  </nav>
+
+  <div class="container">
+      <div ng-view></div>
+  </div>
+
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="app.js"></script>
+  <script src="pet/pet.js"></script>
+  <script src="about/about.js"></script>  
+  <script src="contact/contact.js"></script> 
+</body>
+
+</html>

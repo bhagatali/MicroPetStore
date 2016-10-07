@@ -1,0 +1,91 @@
+ <div class="row" ng-controller="PetController">   
+ <div class="col-md-10">
+    <form ng-submit="submitAddPetForm()" ng-show="addFormShowFlag">
+  		<h3>Add Pet</h3>
+  		<!-- Add Form -->
+  		<div class="container-fluid">
+	  		<div class="row">
+			    <div class="col-sm-6">
+			      <label>Name</label>
+			      <input type="text" class="col-sm-12" ng-model="name" placeholder="Name your Pet" required />
+			    </div>
+			    <div class="col-sm-6">
+			      <label>Status</label>
+				  <select class="col-sm-12" name="selectStatus" id="selectStatus" ng-model="status">
+				      <option value="">---Please select---</option> 
+				      <option value="Sold">Sold</option> 
+				      <option value="Pending">Pending</option>
+				      <option value="Available">Available</option>
+				  </select><br>
+			    </div>
+  		    </div>
+  		    <br>
+	  		<div class="row">
+			    <div class="col-sm-6">
+			      <label>Price</label>
+			      <div class="input-group">
+			      	<span class="input-group-addon">CAD$</span>
+			      	<input type="text" class="col-sm-12" ng-model="price"  format="currency" placeholder="Enter Price" required />
+			      </div>
+			    </div>
+			    <div class="col-sm-6">
+			      <label>Image</label>
+				  <select class="col-sm-12" name="selectImage" id="selectImage" ng-model="image" required multiple>
+				      <option value="Dog">Dog</option>
+				      <option value="Dog_1">Dog_1</option>
+				      <option value="Dog_2">Dog_2</option>
+				      <option value="Cat">Cat</option>
+				      <option value="Cat_1">Cat_1</option>
+				      <option value="Cat_2">Cat_2</option>
+				      <option value="Cat_3">Cat_3</option>
+				      <option value="Lion">Lion</option>
+				      <option value="Lion_1">Lion_1</option>
+				      <option value="Lion_2">Lion_2</option>
+				      <option value="Lion_3">Lion_3</option>				      
+				  </select><br>
+			    </div>
+			</div>	
+			<br>
+	  		<div class="row">
+			    <div class="col-sm-6">
+			      <label>Tags</label>
+			      <input type="text" class="col-sm-12" ng-model="tags" placeholder="Enter Tags - Comma Seperated Please"/>
+			    </div>
+			    <div class="col-sm-6">
+			      <label>Category</label>
+				  <select class="col-sm-12" name="selectCategories" id="selectCategories" ng-model="categories" multiple>
+				      <option value="Canine">Canine</option> 
+				      <option value="Feline">Feline</option>
+				      <option value="Reptile">Reptile</option>
+				      <option value="Fish">Fish</option>
+				  </select><br>
+			    </div>
+  		    </div>			
+			<hr>
+	        <div class="row">
+	            <div class="col-sm-12" align="center">
+	                <input type="submit" class="btn btn-primary" value="Add Pet">
+	                <input type="button" class="btn btn-primary" ng-click="cancelAdd()" value="Cancel">	                
+	            </div>
+	        </div>					
+		</div>
+	  </form>
+	</div>
+	<div class="col-md-2" align="right">
+	    <a class="btn btn-primary" ng-click="showAddPetForm()" ng-hide="addFormShowFlag"><i class="fa fa-plus-circle"></i> New Pet</a>
+	</div>	
+	
+	<div class="row pet">
+	    <div ng-repeat="petData in petStoreData.pets">
+	        <div class="col-md-4">
+	            <h3>{{petData.petName}}</h3>
+	           	<img ng-src="images/{{petData.photoUrl[0]}}.jpg">
+	            <h4>{{petData.price | currency:'C$'}}</h4>
+	            <h4>{{petData.status}}</h4>
+	           	<a class="btn btn-primary btn-block" ng-disabled="petData.status=='Sold'" href="#/pet/{{petData.id}}">Details</a>
+				<br>
+	            <a class="btn btn-danger" ng-click="deletePet(petData.id)"><i class="fa fa-trash-o fa-lg"></i> Delete</a>
+	        </div>
+	    </div>    
+	</div>
+</div>	

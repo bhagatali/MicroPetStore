@@ -2,6 +2,7 @@ package com.petstore.tag.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,12 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+//import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.petstore.tag.domain.Tag;
 import com.petstore.tag.repository.TagRepository;
 
 @RestController
 @RequestMapping("/tag")
+//@CrossOrigin(origins = "http://localhost:9000")
+@CrossOrigin
 public class TagController {
 
 	private TagRepository tagRepository;
@@ -35,10 +38,12 @@ public class TagController {
 	}
 	
 	@RequestMapping(value="/", method=RequestMethod.POST)
-	@HystrixCommand
+//	@HystrixCommand
 	public Tag createTag(@RequestBody Tag tag){
 		String tagCounterUri = counterUri + "tag";
+		System.out.println("Counter URL: " + tagCounterUri);
 		tag.setId(restTemplate.getForObject(tagCounterUri, Integer.class));
+		System.out.println("After the Tag");
 		return tagRepository.save(tag);
 	}
 	

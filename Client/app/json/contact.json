@@ -1,0 +1,26 @@
+[
+    {
+        "id":1,
+        "name":"Home Location",
+        "street":"519 Grandview Way",
+        "city":"Toronto",
+        "state":"ON",
+        "zip":"M2N 6V5"
+    },
+    {
+        "id":2,
+        "name":"Current Work Location",
+        "street":"36 Toronto Street",
+        "city":"Toronto",
+        "state":"ON",
+        "zip":"M2N 7V5"
+    },
+    {
+        "id":3,
+        "name":"Interview Location",
+        "street":"5140 Yonge Street",
+        "city":"Toronto",
+        "state":"ON",
+        "zip":"M2N 4I6"
+    }    
+]

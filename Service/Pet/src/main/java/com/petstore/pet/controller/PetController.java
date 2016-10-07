@@ -7,20 +7,28 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+//import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.petstore.pet.domain.Category;
 import com.petstore.pet.domain.Pet;
 import com.petstore.pet.domain.Tag;
 import com.petstore.pet.repository.PetRepository;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
+@CrossOrigin
 @RequestMapping("/pet")
 public class PetController{
 	
@@ -40,8 +48,14 @@ public class PetController{
 		this.petRepository = petRepository;
 		this.restTemplate = restTemplate;
 	}
-
+	
+	@ApiOperation(value="getAllPet", nickname="Get All Pets")
 	@RequestMapping(value="/", method = RequestMethod.GET)
+	@ApiResponses(value={
+			@ApiResponse(code = 200, message = "Success", response = Map.class),
+			@ApiResponse(code = 401, message = "Unauthorized"),
+			@ApiResponse(code = 500, message = "Failure")
+	})
 	public Map<String, Object> getAllPet(){
 		List<Pet> pets = petRepository.findAll();
 	    Map<String, Object> response = new LinkedHashMap<String, Object>();
@@ -51,7 +65,7 @@ public class PetController{
 	}
 	
 	@RequestMapping(value="/", method = RequestMethod.POST)
-	@HystrixCommand
+//	@HystrixCommand
 	public Map<String, Object> createPet(@RequestBody Pet pet){
 		Iterable<Category> selectedCategory = pet.getCategories();
 		List<Category> petSaveCategory = new ArrayList<Category>();
@@ -109,4 +123,11 @@ public class PetController{
 	public void deletePet(@PathVariable Integer petId){
 		petRepository.delete(petId);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public Iterable<Pet> getPetByName(@RequestParam(value="petName", required=true) String petName){
+		return petRepository.findBypetName(petName);
+//		return petName;
+	}
+	
 }

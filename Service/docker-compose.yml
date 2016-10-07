@@ -1,0 +1,59 @@
+Eureka:
+    image: alpine_jre
+    command: java -jar -Duser.timezone=EST /home/services/Eureka/target/Eureka.jar
+    ports:
+     - "8761:8761"
+    volumes:
+     - /Users/Ali/petStore/Service:/home/services
+    container_name: Eureka
+    restart: on-failure:5
+
+Gateway:
+    image: alpine_jre
+    command: java -jar -Duser.timezone=EST /home/services/Gateway/target/Gateway.jar
+    ports:
+     - "8080:8080"
+    volumes:
+     - /Users/Ali/petStore/Service:/home/services
+    container_name: Gateway
+    restart: on-failure:5
+    
+Pet:
+    image: alpine_jre
+    command: java -jar -Duser.timezone=EST /home/services/Pet/target/Pet.jar
+    ports:
+     - "9080:9080"
+    volumes:
+     - /Users/Ali/petStore/Service:/home/services
+    container_name: Pet
+    restart: on-failure:5
+    
+Category:
+    image: alpine_jre
+    command: java -jar -Duser.timezone=EST /home/services/Category/target/Category.jar
+    ports:
+     - "9081:9081"
+    volumes:
+     - /Users/Ali/petStore/Service:/home/services
+    container_name: Category
+    restart: on-failure:5
+    
+Tag:
+    image: alpine_jre
+    command: java -jar -Duser.timezone=EST /home/services/Tag/target/Tag.jar
+    ports:
+     - "9082:9082"
+    volumes:
+     - /Users/Ali/petStore/Service:/home/services
+    container_name: Tag
+    restart: on-failure:5  
+
+Counter:
+    image: alpine_jre
+    command: java -jar -Duser.timezone=EST /home/services/Counter/target/Counter.jar
+    ports:
+     - "9083:9083"
+    volumes:
+     - /Users/Ali/petStore/Service:/home/services
+    container_name: Counter
+    restart: on-failure:5  

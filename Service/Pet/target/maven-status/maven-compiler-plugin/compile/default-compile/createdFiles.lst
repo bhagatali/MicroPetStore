@@ -1,0 +1,6 @@
+com/petstore/pet/domain/Tag.class
+com/petstore/pet/controller/PetController.class
+com/petstore/pet/PetApplication.class
+com/petstore/pet/repository/PetRepository.class
+com/petstore/pet/domain/Category.class
+com/petstore/pet/domain/Pet.class

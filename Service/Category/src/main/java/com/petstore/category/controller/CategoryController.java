@@ -2,6 +2,7 @@ package com.petstore.category.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,12 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+//import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.petstore.category.domain.Category;
 import com.petstore.category.repository.CategoryRepository;
 
 @RestController
 @RequestMapping("/category")
+@CrossOrigin
 public class CategoryController {
 
 	private CategoryRepository categoryRepository;
@@ -36,7 +38,7 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(value="/", method = RequestMethod.POST)
-	@HystrixCommand
+//	@HystrixCommand
 	public Category createCategory(@RequestBody Category category){
 		String categoryCounterUri = counterUri + "category";
 		category.setId(restTemplate.getForObject(categoryCounterUri, Integer.class));

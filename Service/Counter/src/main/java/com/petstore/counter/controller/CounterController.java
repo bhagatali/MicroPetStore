@@ -7,6 +7,7 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import com.petstore.counter.repository.CounterRepository;
 
 @RestController
 @RequestMapping("/counter")
+@CrossOrigin
 public class CounterController {
 
 	  private MongoOperations mongo;
@@ -38,11 +40,11 @@ public class CounterController {
 	  public int getNextSequence(@PathVariable String collectionName) {
 		    Counter counter = mongo.findAndModify
 		    		(
-		              query(where("_id").is(collectionName)
-		            ), 
-		            new Update().inc("seq", 1),
-		            options().returnNew(true),
-		            Counter.class);
+		              query(where("_id").is(collectionName)), 
+		              new Update().inc("seq", 1),
+		              options().returnNew(true),
+		              Counter.class
+		            );
 		    return counter.getSeq();
 		  }
 

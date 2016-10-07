@@ -1,0 +1,62 @@
+<div class="row">
+    <a href="#/pet">Go Back</a>
+    <br>
+    <br>
+    <div class="col-md-4">
+        <img class="img-full" src="images/{{mainImage}}.jpg">
+        <hr>
+        <div class="row">
+            <div ng-repeat="image in pet.photoUrl | limitTo:4">
+                <div class="col-md-3">
+                    <img class="img-thumbnail" ng-src='images/{{image}}.jpg' ng-click="setImage(image)">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h3>{{pet.petName}}</h3>
+        <p>{{pet.status}}</p>
+        <hr>
+        <div class="container">
+	        <div class="col-md-2" align="left">
+		        <p><b>Categories:</b></p>
+	        	<ul class="list-unstyled" ng-repeat="category in pet.categories">
+	        		<li><a href="http://www.google.com">{{category.categoryName}}</a></li>
+	        	</ul>
+			</div>
+			<div class="col-md-2"  align="left">
+		        <p><b>Tags:</b></p>
+	        	<ul class="list-unstyled" ng-repeat="tag in pet.tags">
+	        		<li>{{tag.tagName}}</li>
+	        	</ul>
+			</div>
+		</div>        	
+        <hr>	 
+        <h4><i class="fa fa-cart-plus fa-2x"></i> {{pet.price | currency:'C$'}}</h4>
+	<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+    	<!-- Specifies Buy Now Button -->
+        <input type="hidden" name="cmd" value="_xclick">
+        <!-- PayPal Email -->
+        <input type="hidden" name="business" value="bhagat.ali@gmail.com">
+        <!-- Item Name -->
+        <input type="hidden" name="item_name" value="{{pet.name}}">
+        <!-- Item ID -->
+        <input type="hidden" name="item_number" value="{{pet.id}}">
+        <!-- Currency Code -->
+        <input type="hidden" name="currency_code" value="CAD">
+        <!-- Price -->
+        <input type="hidden" name="amount" value="{{pet.price}}">
+        <!-- Specify Shipping -->
+        <input type='hidden' name='no_shipping' value='1'>
+        <!-- Return method -->
+        <input type='hidden' name='rm' value='2'>
+        <!-- Return URL -->
+        <input type="hidden" name="return" value="http://localhost:8080">
+        <!-- Cancel Return URL -->
+        <input type="hidden" name="cancel_return" value="http://localhost:8080">
+     			           
+        <!-- Button -->
+        <input type="image" src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_buynow_107x26.png" name="submit" alt="Buy Now">
+    </form> 
+    </div>
+</div>

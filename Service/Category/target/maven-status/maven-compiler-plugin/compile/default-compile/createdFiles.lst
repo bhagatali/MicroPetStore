@@ -1,0 +1,4 @@
+com/petstore/category/CategoryApplication.class
+com/petstore/category/controller/CategoryController.class
+com/petstore/category/repository/CategoryRepository.class
+com/petstore/category/domain/Category.class
